@@ -21,6 +21,7 @@ import wx
 class MyFrame(wx.Frame):
     def __init__(self):
         super().__init__(parent=None, title='Hello World',size=wx.DefaultSize)
+        self.SetSize(wx.Size(600,600))
         panel=wx.Panel(self,id=wx.ID_ANY,pos=(10,10),size=wx.DefaultSize,)
         self.list_box1 = wx.ListBox(panel, pos=wx.DefaultPosition, choices=[])
         self.static_txt1 = wx.StaticText(panel, id=1, label="firstname :",pos=wx.DefaultPosition)
@@ -35,11 +36,12 @@ class MyFrame(wx.Frame):
 
  #buttons
         self.my_btn1 = wx.Button(panel, label="SAVE",pos=wx.DefaultPosition)
+        self.my_btn2 = wx.Button(panel, label="PRINT", pos=wx.DefaultPosition,)
         self.radio_btn1=wx.RadioButton(panel,id=wx.ID_ANY,label="Male ",pos=wx.DefaultPosition)
         self.radio_btn2 = wx.RadioButton(panel, label="Female ",pos=wx.DefaultPosition)
 
  #text control fields
-        self.text_ctrl1=wx.TextCtrl(panel)
+        self.text_ctrl1=wx.TextCtrl(parent=panel,id=wx.ID_ANY,value="",pos=wx.DefaultPosition)
         self.text_ctrl2 = wx.TextCtrl(panel)
 
 #drop down items
@@ -48,15 +50,14 @@ class MyFrame(wx.Frame):
 
 #boxsizer layout manager
         my_sizer2=wx.BoxSizer(wx.VERTICAL)
-        #my_sizer2 = wx.BoxSizer()
 
-        my_sizer2.Add(window=self.list_box1,proportion= 0, flag=wx.ALL| wx.EXPAND, border=5)
+        my_sizer2.Add(window=self.list_box1,proportion= 0, flag=wx.ALL| wx.SHAPED| wx.EXPAND , border=5)
         my_sizer2.Add(window=self.static_line1, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT, border=10,
                       userData=None)
-        my_sizer2.Add(window=self.static_txt1,proportion=0,flag=wx.ALL | wx.LEFT , border=10)
-        my_sizer2.Add(window=self.text_ctrl1,proportion=0,flag=wx.ALL | wx.LEFT | wx.EXPAND, border=10)
+        my_sizer2.Add(window=self.static_txt1,proportion=0,flag=wx.ALL | wx.LEFT , border=15)
+        my_sizer2.Add(window=self.text_ctrl1,proportion=2,flag=wx.ALL  | wx.SHAPED, border=15)
 
-        my_sizer2.Add(window=self.static_txt2,proportion=0,flag=wx.ALL | wx.LEFT, border=10)
+        my_sizer2.Add(window=self.static_txt2,proportion=0,flag=wx.ALL | wx.LEFT, border=15)
         my_sizer2.Add(window=self.text_ctrl2,proportion=0,flag=wx.ALL | wx.LEFT | wx.SHAPED, border=10)
         my_sizer2.Add(window=self.static_line3, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT, border=10,
                       userData=None)
@@ -69,6 +70,7 @@ class MyFrame(wx.Frame):
         my_sizer2.Add(window=self.static_line2, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT, border=10,
                       userData=None)
         my_sizer2.Add(window=self.my_btn1, proportion=0,flag= wx.ALL | wx.LEFT, border=5)
+        my_sizer2.Add(window=self.my_btn2, proportion=0, flag=wx.ALL | wx.CENTRE, border=5)
         panel.SetSizer(my_sizer2)
 
 
