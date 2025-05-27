@@ -14,7 +14,7 @@ wxStaticText – A label for displaying static text.
 wxTreeCtrl – A tree view for hierarchical data.
 wxNotebook
 """
-
+from random import choices
 
 import wx
 
@@ -22,25 +22,32 @@ class MyFrame(wx.Frame):
     def __init__(self):
         super().__init__(parent=None, title='Hello World')
         panel=wx.Panel(self)
-        self.list_box1 = wx.ListBox(panel, pos=(5, 55), choices=["MALE", "FEMALE"])
-        self.static_txt1 = wx.StaticText(panel, id=1, label="firstname :", pos=(5, 5))
-        self.my_btn1 = wx.Button(panel, label="press me", pos=(5, 55))
+        self.list_box1 = wx.ListBox(panel, pos=wx.DefaultPosition, choices=[])
+        self.static_txt1 = wx.StaticText(panel, id=1, label="firstname :",pos=wx.DefaultPosition)
+        self.static_txt2 = wx.StaticText(panel, id=1, label="surname :",pos=wx.DefaultPosition)
+        self.static_txt3 = wx.StaticText(panel, id=1, label="nationality :", pos=wx.DefaultPosition)
+        self.my_btn1 = wx.Button(panel, label="SAVE",pos=wx.DefaultPosition)
+        self.radio_btn1=wx.RadioButton(panel,id=wx.ID_ANY,label="Male ",pos=wx.DefaultPosition)
+        self.radio_btn2 = wx.RadioButton(panel, label="Female ",pos=wx.DefaultPosition)
+        self.text_ctrl1=wx.TextCtrl(panel)
+        self.text_ctrl2 = wx.TextCtrl(panel)
+        choices=["Malawi", "Zambia", "Zimbabwe"]
+        self.drop_down1 = wx.ComboBox(parent=panel,choices=choices,)
 
 
-        my_sizer1=wx.BoxSizer(wx.VERTICAL)
+        my_sizer2=wx.BoxSizer(wx.VERTICAL)
+        #my_sizer2 = wx.BoxSizer()
 
-        my_sizer1.Add(self.list_box1, 0, wx.ALL| wx.EXPAND, 5)
-
-        my_sizer2 = wx.BoxSizer(wx.HORIZONTAL)
-
-        my_sizer1.Add(self.static_txt1,proportion=2)
-
-
-
-        my_sizer2.Add(self.text_ctrl1,0)
-
-
-        my_sizer2.Add(self.my_btn1,0,wx.ALL | wx.CENTER,5)
+        my_sizer2.Add(window=self.list_box1,proportion= 0, flag=wx.ALL| wx.EXPAND, border=5)
+        my_sizer2.Add(window=self.static_txt1,proportion=0,flag=wx.ALL | wx.LEFT , border=10)
+        my_sizer2.Add(window=self.text_ctrl1,proportion=0,flag=wx.ALL | wx.LEFT | wx.SHAPED, border=10)
+        my_sizer2.Add(window=self.static_txt2,proportion=0,flag=wx.ALL | wx.LEFT, border=10)
+        my_sizer2.Add(window=self.text_ctrl2,proportion=0,flag=wx.ALL | wx.LEFT | wx.SHAPED, border=10)
+        my_sizer2.Add(window=self.radio_btn1,proportion= 0, flag=wx.ALL | wx.LEFT | wx.SHAPED, border=10)
+        my_sizer2.Add(window=self.radio_btn2,proportion=0, flag=wx.ALL | wx.LEFT , border=10,userData=None)
+        my_sizer2.Add(window=self.static_txt3, proportion=0, flag=wx.ALL | wx.LEFT, border=10)
+        my_sizer2.Add(window=self.drop_down1,proportion=0, flag=wx.ALL | wx.LEFT | wx.SHAPED, border=10)
+        my_sizer2.Add(window=self.my_btn1, proportion=0,flag= wx.ALL | wx.LEFT, border=5)
         panel.SetSizer(my_sizer2)
 
 
